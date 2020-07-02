@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load poll_extras %}
+{% block header %}
+{% endblock %}
+{% block content %}
+
+<nav class="font-weight-bold mt-4 mb-0" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active">
+                    Phase 1
+                <div class="icon baseline mr-2">
+                    <svg>
+                            <rect width="50" height="25" style="fill:rgb(75, 192, 192);" />
+                    </svg>
+                </div>
+                Phase 2
+                    <div class="icon baseline mr-2">
+                        <svg>
+                                <rect width="50" height="25" style="fill:rgb(255, 159, 64);" />
+                        </svg>
+                    </div>
+                Phase 3
+                    <div class="icon baseline mr-2">
+                        <svg>
+                                <rect width="50" height="25" style="fill:rgb(54, 162, 235);" />
+                        </svg>
+                    </div>
+                </li>
+              </ol>
+        </nav>
+
+<div class="row">
+    <div class="col-md-10 col-lg-6 col-sm-12">
+    <div class="card card-chart">
+                <div class="card-header card-header-primary" >
+                  <h4 class="card-title font-weight-bold">Répartition d'énergie par phase</h4>
+
+                </div>
+                <div class="card-body">
+                  <div id="doughnuts" class="row align-items-center">
+<!--                    <canvas class="col-6" id="doughnutJan"></canvas>-->
+                  </div>
+
+                </div>
+    </div>
+  </div>
+    <div class="col-md-10 col-lg-6 col-sm-12">
+    <div class="card card-chart">
+                <div class="card-header card-header-primary" >
+                  <h4 class="card-title font-weight-bold">Consommation d'énergie par phase</h4>
+
+                </div>
+                <div class="card-body">
+                  <div class="align-items-center">
+                    <canvas id="stackedBar"></canvas>
+                  </div>
+
+                </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<script src="{% static 'chartbar.js'%}"></script>-->
+<script src="{% static 'chartyearline.js'%}"></script>
+<script src="{% static 'mainscript.js'%}"></script>
+<script src="{% static 'doughnutChart.js'%}"></script>
+<script src="{% static 'stackBarChart.js'%}"></script>
+<script src="{% static 'gethistory.js'%}"></script>
+<!--<script type="text/javascript">-->
+<!--    var queryset = JSON.parse('{{queryset|safe}}');-->
+<!--    var LIMITS = ['{{limits.0}}', '{{limits.1}}', '{{limits.2}}', '{{limits.3}}', '{{limits.4}}'];-->
+<!--</script>-->
+<!--<script src="{% static 'repartitioncharts.js'%}"></script>-->
+<!--<script src="{% static 'chartyearline.js'%}"></script>-->
+<!--<script src="{% static 'chartstackbar.js'%}"></script>-->
+<!--<script src="{% static 'mainscript.js'%}"></script>-->
+{% endblock %}

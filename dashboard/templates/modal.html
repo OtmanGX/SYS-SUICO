@@ -1,0 +1,79 @@
+<!--Modals-->
+<div class="modal" id="limiteModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post" action="/dashboard/">
+        {% csrf_token %}
+      <div class="modal-header">
+        <h5 class="modal-title">Entrer les seuils</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="tensionMax">Tension Max</label>
+            <input type="number" required name="tensionMax" class="form-control" value="{{LIMITS.TENSION.max|escapejs}}" id="tensionMax">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="tensionTheo">Tension Théorique</label>
+            <input type="number" required name="tensionTheo" value="{{LIMITS.TENSION.theo|escapejs}}" class="form-control" id="tensionTheo">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="courantMax">Courant Max</label>
+            <input type="number" required name="courantMax" class="form-control" value="{{LIMITS.COURANT.max|escapejs}}" id="courantMax">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="courantTheo">Courant Théorique</label>
+            <input type="number" required name="courantTheo" value="{{LIMITS.COURANT.theo|escapejs}}" class="form-control" id="courantTheo">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="puissanceMax">Puissance Max</label>
+            <input type="number" required name="puissanceMax" class="form-control" value="{{LIMITS.PUISSANCE.max|escapejs}}" id="puissanceMax">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="puissanceTheo">Puissance Théorique</label>
+            <input type="number" required name="puissanceTheo" value="{{LIMITS.PUISSANCE.theo|escapejs}}" class="form-control" id="puissanceTheo">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="EnergieMax">Energie Max</label>
+            <input type="number" name="EnergieMax" required class="form-control" value="{{LIMITS.ENERGIE.max|escapejs}}" id="EnergieMax">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="EnergieTheo">Energie Théorique</label>
+            <input type="number" required name="EnergieTheo" value="{{LIMITS.ENERGIE.theo|escapejs}}" class="form-control" id="EnergieTheo">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="PuissanceTotMax">Puissance Totale Max</label>
+            <input type="number" name="PuissanceTotMax" required class="form-control" value="{{LIMITS.PUISSANCE_TOT.max|escapejs}}" id="PuissanceTotMax">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="PuissanceTotTheo">Puissance Totale Théorique</label>
+            <input type="number" required name="PuissanceTotTheo" value="{{LIMITS.PUISSANCE_TOT.theo|escapejs}}" class="form-control" id="PuissanceTotTheo">
+          </div>
+        </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-primary">Enregistrer les changements</button>
+      </div>
+        </div>
+        </form>
+  </div>
+</div>
+</div>

@@ -1,0 +1,34 @@
+"""Suico URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/2.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+from Suico.task import SerialThread
+thread = SerialThread()
+thread.start()
+from dashboard import views as d_views
+from history import views as h_views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # Dashboard
+    path('', d_views.dashboard, name="home"),
+    path('dashboard/', d_views.dashboard, name="dashboard"),
+    path('realtime/', d_views.realtime_api, name="realtime"),
+    path('puissance/', d_views.puissanceday_view, name="puissance"),
+    # History
+    path('history_per/', h_views.history_per, name="history per"),
+    path('history/', h_views.history, name="history"),
+]
