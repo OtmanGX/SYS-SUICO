@@ -15,7 +15,7 @@
           Sys Suico
         </a></div>
       <div class="sidebar-wrapper">
-        <ul class="nav">
+        <ul class="nav p-0">
           <li class="nav-item {% if request.path == '/dashboard/' %}active{% endif %}">
             <a class="nav-link" href="{% url 'dashboard' %}">
               <i class="material-icons">dashboard</i>
@@ -31,7 +31,7 @@
             </a>
           </li>
 
-          <div class="ml-4" id="navbarToggleExternalContent">
+          <div class="ml-2" id="navbarToggleExternalContent">
               <ul class="nav">
                 <li class="nav-item {% if request.path == '/history/' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'history' %}">
@@ -40,7 +40,7 @@
                 </a>
                 </li>
 
-                <li class="nav-item  {% if request.path == '/history_alarm/' %}active{% endif %}">
+                <li class="nav-item  {% if request.path == '/history_per/' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'history per' %}">
                   <i class="material-icons">history</i>
                   <p>Historique Consommation</p>

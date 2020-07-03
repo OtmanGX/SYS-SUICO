@@ -19,3 +19,6 @@ async function filter2(val) {
     var url = url+'?filter='+val
     window.open(url, '_self')
 }
+
+p = new Pagination('pagination', 10, page);
+p.createList()

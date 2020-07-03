@@ -36,8 +36,14 @@ def history(request):
             data = history_all(date1)
     else:
         data = history_all(day)
+    page = request.GET.get("page")
+    if page is not None:
+        page = page
+    else :
+        page=1
 
-    return render(request, 'history.html', {'history': list(data)})
+
+    return render(request, 'history.html', {'history': list(data)[:10], 'page': page})
 
 
 def history_per(request):
