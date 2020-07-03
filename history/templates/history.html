@@ -16,17 +16,18 @@
                       </h5>
                       <div class="ml-3 mb-3">
                       <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                          <label class="btn btn-primary">
-                            <input type="radio" onclick="filter2(this.value)" name="options" value="day" id="option1"> Aujourd'hui
+                          <label class="btn btn-primary {% if request.GET.filter is None or request.GET.filter == 'day' %}active{% endif %}"
+                                 onclick="filter2('day');">
+                            <input type="radio" name="options" value="day" id="option1"> Aujourd'hui
                           </label>
-                          <label class="btn btn-primary">
+                          <label class="btn btn-primary {% if request.GET.filter == 'week' %}active{% endif %}" onclick="filter2('week')">
                             <input type="radio" name="options" value="week" id="option2">  Semaine
                           </label>
-                          <label class="btn btn-primary active">
+                          <label class="btn btn-primary {% if request.GET.filter == 'month' %}active{% endif %}" onclick="filter2('month')">
                             <input type="radio" name="options" value="month" id="option3"> Mois
                           </label>
-                          <label class="btn btn-primary">
-                            <input type="radio" name="options" value="month" id="option4"> Année
+                          <label class="btn btn-primary {% if request.GET.filter == 'year' %}active{% endif %}" onclick="filter2('year')">
+                            <input type="radio" name="options" value="year" id="option4"> Année
                           </label>
                         </div>
                         </div>
@@ -79,6 +80,9 @@
                         <th colspan="3" class="font-weight-bold">
                           Phase3
                         </th>
+                          <th rowspan="2" class="font-weight-bold">
+                          Puissance Totale
+                        </th>
                       </tr>
                       <tr>
                             <th class="font-weight-bold">
@@ -115,41 +119,45 @@
                       </tr>
                       </thead>
                       <tbody style="height:400px; overflow: scroll;">
-
+                        {% for item in history %}
                         <tr>
                           <td>
-                              date1
+                              {{item.created_at|date:'d M Y H:i:s'}}
                           </td>
                           <td>
-                              0
+                              {{item.t1|floatformat:'-3'}}
                           </td>
                           <td>
-                              0
+                              {{item.c1|floatformat:'-3'}}
                           </td>
                           <td>
-                              0
+                              {{item.p1|floatformat:'-3'}}
                           </td>
                             <td>
-                              0
+                              {{item.t2|floatformat:'-3'}}
                           </td>
                           <td>
-                              0
+                              {{item.c2|floatformat:'-3'}}
                           </td>
                           <td>
-                              0
+                              {{item.p2|floatformat:'-3'}}
                           </td>
                             <td>
-                              0
+                              {{item.t3|floatformat:'-3'}}
                           </td>
                           <td>
-                              0
+                              {{item.c3|floatformat:'-3'}}
                           </td>
                           <td>
-                              0
+                              {{item.p3|floatformat:'-3'}}
+                          </td>
+
+                            <td>
+                              {{item.p_total|floatformat:'-3'}}
                           </td>
 
                         </tr>
-
+                        {% endfor %}
 
                       </tbody>
                     </table>
@@ -157,13 +165,11 @@
                 </div>
   </div>
 
-
-
 <script type="text/javascript">
 
 </script>
 <script src="{% static 'utils.js'%}"></script>
 <script src="{% static 'chartyearline.js'%}"></script>
 <!--<script src="{% static 'mainscript.js'%}"></script>-->
-<!--<script src="{% static 'gethistory.js'%}"></script>-->
+<script src="{% static 'getHistoryTable.js'%}"></script>
 {% endblock %}

@@ -25,10 +25,10 @@ class EnergieMsg:
         self.date = datetime.now(tz=timezone.utc)
         self.values = msg.rstrip('F;').lstrip(';S').split(';')
         self.values = [float(i)/100 for i in self.values]
-        self.values = [{'tension':self.values[i*4],
-                         'courant':self.values[i*4+1],
-                         'puissance':self.values[i*4+2],
-                         'energie':self.values[i*4+3]}
+        self.values = [{'tension': self.values[i*4],
+                         'courant': self.values[i*4+1],
+                         'puissance': self.values[i*4+2],
+                         'energie': self.values[i*4+3]}
                        for i in range(3)]
         self.save()
         # self.date = obj.created_at
