@@ -30,6 +30,13 @@ def puissanceday_view(request):
         'puissanceDay': tuple(puissanceDay)
     })
 
+
+def energyday_view(request):
+    energieDay = energie_stats()
+    return JsonResponse(data={
+        'energieDay': tuple(energieDay)
+    })
+
 # def year_history():
 #     queryset = Temperature.objects.filter(created_at__year=timezone.now().year)
 #     data = map(lambda x: {'date': x.created_at.isoformat(), 'value': x.value}, queryset)

@@ -35,18 +35,18 @@ var $stackedBarChart = $('#stackedBar');
 var ctx = $stackedBarChart[0].getContext('2d');
 configStackBar.options.annotations = getAnnotations(LIMITS.ENERGIE.max, LIMITS.ENERGIE.theo);
 window.myBar = new Chart(ctx, configStackBar);
-async function addDataStackBar() {
-//    window.myBar.data.datasets[0].data = energieDay.map(x => x.phase1) ;
-//    window.myBar.data.datasets[1].data = energieDay.map(x => x.phase2) ;
-//    window.myBar.data.datasets[2].data = energieDay.map(x => x.phase3) ;
-    window.myBar.data.datasets[0].data = [4,5, 7, 9, 11, 12, 13, 15, 16, 4,5, 7, 9, 11, 12, 13, 15, 16, 17, 20, 21, 21, 23, 24] ;
-    window.myBar.data.datasets[1].data = [4,5, 7, 9, 11, 12, 13, 15, 16, 4,5, 7, 9, 11, 12, 13, 15, 16, 17, 20, 21, 21, 23, 24] ;
-    window.myBar.data.datasets[2].data = [4,5, 7, 9, 11, 12, 13, 15, 16, 4,5, 7, 9, 11, 12, 13, 15, 16, 17, 20, 21, 21, 23, 24] ;
+async function addDataStackBar(energieDay) {
+    window.myBar.data.datasets[0].data = energieDay.map(x => x.phase1) ;
+    window.myBar.data.datasets[1].data = energieDay.map(x => x.phase2) ;
+    window.myBar.data.datasets[2].data = energieDay.map(x => x.phase3) ;
+//    window.myBar.data.datasets[0].data = [4,5, 7, 9, 11, 12, 13, 15, 16, 4,5, 7, 9, 11, 12, 13, 15, 16, 17, 20, 21, 21, 23, 24] ;
+//    window.myBar.data.datasets[1].data = [4,5, 7, 9, 11, 12, 13, 15, 16, 4,5, 7, 9, 11, 12, 13, 15, 16, 17, 20, 21, 21, 23, 24] ;
+//    window.myBar.data.datasets[2].data = [4,5, 7, 9, 11, 12, 13, 15, 16, 4,5, 7, 9, 11, 12, 13, 15, 16, 17, 20, 21, 21, 23, 24] ;
     window.myBar.update();
 }
 barChartData.labels = ['0:00','1:00','2:00','3:00','4:00','5:00','6:00','7:00', '8:00', '9:00', '10:00', '11:00', '12:00',
             '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', ]
-addDataStackBar();
+addDataStackBar(energieDay);
 
 window.resetZoom = function (chart) {
     chart.resetZoom();
@@ -112,6 +112,8 @@ async function ajaxPuissanceDay() {
     $.ajax({
         url: "/puissance/",
         success: async function (data) {
+            clearChart(puissanceDayChart);
+            await sleep(200);
             var data = data.puissanceDay;
             if (data != null) {
                 $.each(data, function (i, d) {
@@ -123,6 +125,19 @@ async function ajaxPuissanceDay() {
     });
 };
 
+async function ajaxEnergieDay() {
+    $.ajax({
+        url: "/energie/",
+        success: async function (data) {
+            clearChart(window.myBar);
+            await sleep(200);
+            var data = data.energieDay;
+            if (data != null) {
+                addDataStackBar(energieDay);
+            }
+        }
+    });
+};
 // Intervals
 var interval = 1000; // 1 secs
 setInterval(displayTime, interval);

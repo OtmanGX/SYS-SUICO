@@ -334,9 +334,9 @@ window.resetZoom = function (chart) {
     chart.resetZoom();
 };
 
-window.clearChart = function (chart) {
+window.clearChart = async function (chart) {
     console.log("clear called");
-    chart.data.labels = [];
+//    chart.data.labels = [];
     chart.data.datasets.forEach((dataset) => {
         dataset.data = [];
     });

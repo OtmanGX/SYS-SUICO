@@ -51,11 +51,11 @@ def energie_day():
                                                                  dt + timedelta(hours=i + 1)])
         if query.count() > 2:
             value = (query.filter(phase__phase=1).last().value -
-                     query.filter(phase__phase=1).first().value) * 100
-            value2 = (query.filter(phase__phase=1).last().value -
-                      query.filter(phase__phase=1).first().value) * 100
-            value3 = (query.filter(phase__phase=1).last().value -
-                      query.filter(phase__phase=1).first().value) * 100
+                     query.filter(phase__phase=1).first().value)
+            value2 = (query.filter(phase__phase=2).last().value -
+                      query.filter(phase__phase=2).first().value)
+            value3 = (query.filter(phase__phase=3).last().value -
+                      query.filter(phase__phase=3).first().value)
             res.append({
                 'phase1': round(value, 3),
                 'phase2': round(value2, 3),

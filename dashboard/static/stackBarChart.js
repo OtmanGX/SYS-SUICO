@@ -83,7 +83,7 @@ configStackBar = {
                 stacked: true,
                 scaleLabel: {
                 display: true,
-                labelString: 'Energie KWh',
+                labelString: 'Energie Wh',
         }
             }]
         }

@@ -28,6 +28,7 @@ urlpatterns = [
     path('dashboard/', d_views.dashboard, name="dashboard"),
     path('realtime/', d_views.realtime_api, name="realtime"),
     path('puissance/', d_views.puissanceday_view, name="puissance"),
+    path('energie/', d_views.energyday_view, name="energie"),
     # History
     path('history_per/', h_views.history_per, name="history per"),
     path('history/', h_views.history, name="history"),
